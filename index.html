@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="vampire.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        var chart;
+        var data;
+        var options;
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            data = new google.visualization.DataTable();
+            data.addColumn('string', 'Element');
+            data.addColumn('number', 'Number');
+            data.addRows([
+                ['Human', num_human],
+                ['Vampire', num_vampire]
+            ]);
+
+            // Set chart options
+            options = {
+                'title': 'How many vampires in the class?',
+                'width': 400,
+                'height': 300
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            chart = new google.visualization.PieChart(document.getElementById('pie_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Is My Classmate A Vampire?</h1>
+
+        <!-- Use Bootstrap grid system to orgnize content -->
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- Table view -->
+                <table class="table" id="classTable">
+                    <caption>Which one of my classmate is a vampire?</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Icon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="student_1">John</td>
+                            <td>
+                                <img id="student_1_img" src="src/human.png" alt="human" style="width: 30px; "></td>
+                        </tr>
+                        <tr>
+                            <td id="student_2">Lee</td>
+                            <td>
+                                <img id="student_2_img" src="src/human.png" alt="human" style="width: 30px; "></td>
+                        </tr>
+                        <tr>
+                            <td id="student_3">Emma</td>
+                            <td>
+                                <img id="student_3_img" src="src/human.png" alt="human" style="width: 30px; "></td>
+                        </tr>
+                        <tr>
+                            <td id="student_4">Ava</td>
+                            <td>
+                                <img id="student_4_img" src="src/human.png" alt="human" style="width: 30px; "></td>
+                        </tr>
+                        <tr>
+                            <td id="student_5">Alex</td>
+                            <td>
+                                <img id="student_5_img" src="src/human.png" alt="human" style="width: 30px; "></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <button type="button " onclick="vampire_rand() ">Show Vampire!</button>
+            </div>
+            <div class="col-sm-6 ">
+                <!-- Pie chart view -->
+                <div id="pie_div"></div>
+                <button type="button" onclick="drawChart()">Pie Chart View</button>
+            </div>
+        </div>
+        <div class="row ">
+            <!-- Form -->
+
+        </div>
+
+    </div>
+</body>
+
+</html>
