@@ -3,8 +3,10 @@
 
 var num_vampire = 0;
 var num_human = 5;
-var table = document.getElementById("classTable");
+var table = document.getElementById("class_table");
+console.log(num_human);
 var row_count = table.rows.length;
+console.log(row_count);
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
