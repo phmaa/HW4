@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="random.html">Random Guess</a></li>
+                <li class="active"><a href="threshold.html">Threshold Value</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form>
+            <div class="form-row">
+                <label for="first_name">First Name:</label>
+                <input type="text" class="form-control" id="first_name" placeholder="First Name">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    Is the classmate able to eat garlic?
+                    <div class="radio">
+                        <label><input type="radio" name="garlic" id="garlic_yes" checked>Yes</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="garlic" id="garlic_no">No</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    Have you seen the classmate's shadow?
+                    <div class="radio">
+                        <label><input type="radio" name="shadow" id="shadow_yes" checked>Yes</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="shadow" id="shadow_no">No</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    Is the skin color of the classmate pale?
+                    <div class="radio">
+                        <label><input type="radio" name="skin" id="pale_yes" checked>Yes</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="skin" id="pale_no">No</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <button class="btn btn-primary" onclick="add_row()">Add Data</button>
+                <button class="btn btn-primary" onclick="delete_row()">Delete Last Row</button>
+            </div>
+
+        </form>
+
+        <!-- create a table using data from example 24 -->
+        <div class="col-md-6">
+            <table class="table" id="threshold_table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Garlic</th>
+                        <th>Shadow</th>
+                        <th>Pale skin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Lee</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Emma</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Ava</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Alex</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- generate a pie chart based on the threshold value entered by the user-->
+        <div class="col-md-6">
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        var table = document.getElementById('threshold_table');
+        var row_count = table.rows.length;
+        //console.log(row_count);
+        //add user input to the last row of the current table
+        function add_row() {
+            var row = table.insertRow(row_count - 1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+
+            // add content to the new cells
+
+        }
+    </script>
+</body>
+
+</html>
