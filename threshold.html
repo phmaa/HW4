@@ -189,7 +189,7 @@
         //add user input to the last row of the current table
         // refresh the pie chart after adding user input data
         function update_chart() {
-            row = table.insertRow(row_count);
+            row = table.insertRow(1);
             cell1 = row.insertCell(0);
             cell2 = row.insertCell(1);
             cell3 = row.insertCell(2);
@@ -240,11 +240,28 @@
 
         // delete the last row and update pie chart
         function delete_row() {
-            if (cell5.innerHTML == 'Human') {
-                console.log(cell5.innerHTML.text());
+            if (document.getElementById('threshold_table').rows[1].cells[4].innerHTML == 'Human') {
+                num_human -= 1;
+            } else {
+                num_vampire -= 1;
             }
-            table.deleteRow(row_count - 1);
-
+            console.log(num_human);
+            table.deleteRow(1);
+            data = new google.visualization.DataTable();
+            data.addColumn('string', 'Element');
+            data.addColumn('number', 'Count');
+            data.addRows([
+                ['Human', num_human],
+                ['Vampire', num_vampire]
+            ]);
+            options = {
+                'title': 'How many vampires in the class?',
+                'width': 400,
+                'height': 300
+            };
+            //console.log(num_vampire);
+            chart = new google.visualization.PieChart(document.getElementById('pie_div'));
+            chart.draw(data, options);
         }
     </script>
 </body>
