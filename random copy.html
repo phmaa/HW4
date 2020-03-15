@@ -27,7 +27,7 @@
             <div class="col-md-6">
                 <!-- Table view -->
                 <table class="table" id="random_table">
-                    <caption style="font-weight: bold;">Which one of my classmate is a vampire?</caption>
+                    <caption>Which one of my classmate is a vampire?</caption>
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -62,7 +62,8 @@
                 <!-- Pie chart view -->
                 <div id="pie_div"></div>
                 <!-- Update pie chart -->
-                <button class="btn btn-primary" onclick="vampire_rand()" style="margin-left: 8rem;">Reveal a vampire!</button>
+                <button class="btn btn-primary" onclick="vampire_rand() ">Reveal a vampire!</button>
+                <button class="btn btn-primary" onclick="convert_vampire()" style="margin-left: 12rem;">Update chart</button>
             </div>
         </div>
     </div>
@@ -120,11 +121,6 @@
 
         //random guess model
         function vampire_rand() {
-            // change status to vampire, if human > 2 
-            var status_num = getRandomInt(1, 5);
-            // create student id string based on randomly generated int
-            var status_id = 'status_' + status_num.toString();
-            document.getElementById(status_id).innerHTML = "Vampire";
             //check status and count the number of remaining human  
             var count = 0;
             for (i = 1; i <= 5; i++) {
@@ -135,6 +131,28 @@
                 }
             }
             console.log(num_human);
+            if (num_human > 2) {
+                // change status to vampire, if human > 2 
+                var status_num = getRandomInt(1, 5);
+                // create student id string based on randomly generated int
+                var status_id = 'status_' + status_num.toString();
+                document.getElementById(status_id).innerHTML = "Vampire";
+            } else {
+                window.alert("No more random guess.");
+                //reset the status to human
+                for (i = 1; i < 5; i++) {
+                    var status_id = 'status_' + i;
+                    document.getElementById(status_id).innerHTML = 'Human';
+                }
+            }
+        }
+
+        function convert_vampire() {
+            // var magic
+
+            num_human -= 1;
+            num_vampire = 5 - num_human;
+
             data.removeRow(1);
             data.removeRow(0);
             data.insertRows(0, [
@@ -146,14 +164,6 @@
             ]);
 
             chart.draw(data, options);
-            if (num_human < 2) {
-                window.alert("This is your last guess.");
-                //reset the status to human
-                for (i = 1; i < 5; i++) {
-                    var status_id = 'status_' + i;
-                    document.getElementById(status_id).innerHTML = 'Human';
-                }
-            }
         }
     </script>
 </body>
