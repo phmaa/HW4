@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <!-- <script type="text/javascript" src="vampire.js"></script> -->
-
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -24,22 +24,22 @@
         </div>
     </nav>
     <div class="container">
-        <h1 style="text-align: center;">Is My Classmate A Vampire?</h1>
+        <h2 style="text-align: center;">Is My Classmate A Vampire?</h1>
+            <hr>
+            <!-- Use Bootstrap grid system to orgnize content -->
 
-        <!-- Use Bootstrap grid system to orgnize content -->
-
-        <!-- Select box--Model logic -->
-        <div class="row form-group">
-            <div class=" col-md-12 ">
-                <label for="select_logic">How would you like to proceed?</label>
-                <select class="form-control" id="select_logic" onchange="location = this.value;">
+            <!-- Select box--Model logic -->
+            <div class="row form-group">
+                <div class=" col-md-12 ">
+                    <label for="select_logic">How would you like to proceed?</label>
+                    <select class="form-control" id="select_logic" onchange="location = this.value;" style="height: max-content;">
               <option value="">Please select</option>
               <option value="random.html">Reveal which one of my classmate is a vampire</option>
               <option value="threshold.html">Let me tell you about my classmate</option>
             </select>
+                </div>
+                <!-- <button class="btn btn-default" onclick="document.getElementById('select_logic').selectedIndex='0'">Reset</button> -->
             </div>
-            <!-- <button class="btn btn-default" onclick="document.getElementById('select_logic').selectedIndex='0'">Reset</button> -->
-        </div>
     </div>
 </body>
 

@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -21,14 +22,14 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container" id="form1">
         <div col-md-12>
-            <label for="first_name">First Name:</label>
+            <label for="first_name">Name:</label>
             <input type="text" class="form-control" id="first_name" placeholder="First Name" required>
         </div>
-
+        <hr>
         <div class="col-md-4">
-            Is the classmate able to eat garlic?
+            <p>Eat garlic?</p><br>
             <div class="radio">
                 <label><input type="radio" name="garlic" id="garlic_yes" value="Yes" >Yes</label>
             </div>
@@ -36,8 +37,9 @@
                 <label><input type="radio" name="garlic" id="garlic_no" value="No" checked>No</label>
             </div>
         </div>
+
         <div class="col-md-4">
-            Have you seen the classmate's shadow?
+            <p>Shadow?</p><br>
             <div class="radio">
                 <label><input type="radio" name="shadow" id="shadow_yes" value="Yes">Yes</label>
             </div>
@@ -46,7 +48,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            Is the skin color of the classmate pale?
+            <p>Pale skin?</p><br>
             <div class="radio">
                 <label><input type="radio" name="complexion" id="pale_yes" value="Yes">Yes</label>
             </div>
@@ -59,7 +61,7 @@
             <button class="btn btn-primary" onclick="update_chart()">Update Chart</button>
             <button class="btn btn-primary" onclick="delete_row()">Delete Row</button>
         </div>
-
+        <div class="col-me-12">&nbsp;</div>
         <!-- create a table using data from example 24 -->
         <div class="col-md-6">
             <table class="table" id="threshold_table">
@@ -157,9 +159,14 @@
             classmate_data_processing(data);
 
             options = {
-                'title': 'How many vampires in the class?',
+                'title': '',
                 'width': 400,
-                'height': 300
+                'height': 300,
+                'backgroundColor': 'transparent',
+                'legendTextStyle': {
+                    color: '#FFF'
+                },
+                'opacity': '0.7'
             };
 
             chart = new google.visualization.PieChart(document.getElementById('pie_div'));
@@ -228,10 +235,16 @@
                 ['Human', num_human],
                 ['Vampire', num_vampire]
             ]);
+
             options = {
-                'title': 'How many vampires in the class?',
+                'title': '',
                 'width': 400,
-                'height': 300
+                'height': 300,
+                'backgroundColor': 'transparent',
+                'legendTextStyle': {
+                    color: '#FFF'
+                },
+                'opacity': '0.7'
             };
             //console.log(num_vampire);
             chart = new google.visualization.PieChart(document.getElementById('pie_div'));
@@ -254,10 +267,16 @@
                 ['Human', num_human],
                 ['Vampire', num_vampire]
             ]);
+
             options = {
-                'title': 'How many vampires in the class?',
+                'title': '',
                 'width': 400,
-                'height': 300
+                'height': 300,
+                'backgroundColor': 'transparent',
+                'legendTextStyle': {
+                    color: '#FFF'
+                },
+                'opacity': '0.7'
             };
             //console.log(num_vampire);
             chart = new google.visualization.PieChart(document.getElementById('pie_div'));

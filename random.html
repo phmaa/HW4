@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -22,49 +23,50 @@
         </div>
     </nav>
     <div class="container">
-        <h1 style="text-align: center;">Show the vampire!</h1>
-        <div class="row">
-            <div class="col-md-6">
-                <!-- Table view -->
-                <table class="table" id="random_table">
-                    <caption style="font-weight: bold;">Which one of my classmate is a vampire?</caption>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="student_1">John</td>
-                            <td id="status_1">Human</td>
-                        </tr>
-                        <tr>
-                            <td id="student_2">Lee</td>
-                            <td id="status_2">Human</td>
-                        </tr>
-                        <tr>
-                            <td id="student_3">Emma</td>
-                            <td id="status_3">Human</td>
-                        </tr>
-                        <tr>
-                            <td id="student_4">Ava</td>
-                            <td id="status_4">Human</td>
-                        </tr>
-                        <tr>
-                            <td id="student_5">Alex</td>
-                            <td id="status_5">Human</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <h2 style="text-align: center;">Show the vampire!</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Table view -->
+                    <table class="table" id="random_table">
+                        <caption style="font-weight: bold;">Which one of my classmate is a vampire?</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="student_1">John</td>
+                                <td id="status_1">Human</td>
+                            </tr>
+                            <tr>
+                                <td id="student_2">Lee</td>
+                                <td id="status_2">Human</td>
+                            </tr>
+                            <tr>
+                                <td id="student_3">Emma</td>
+                                <td id="status_3">Human</td>
+                            </tr>
+                            <tr>
+                                <td id="student_4">Ava</td>
+                                <td id="status_4">Human</td>
+                            </tr>
+                            <tr>
+                                <td id="student_5">Alex</td>
+                                <td id="status_5">Human</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6 ">
+                    <!-- Pie chart view -->
+                    <div id="pie_div"></div>
+                    <!-- Update pie chart -->
+                    <button class="btn btn-primary" onclick="vampire_rand()" style="margin-left: 8rem;">Reveal a vampire!</button>
+                </div>
             </div>
-            <div class="col-md-6 ">
-                <!-- Pie chart view -->
-                <div id="pie_div"></div>
-                <!-- Update pie chart -->
-                <button class="btn btn-primary" onclick="vampire_rand()" style="margin-left: 8rem;">Reveal a vampire!</button>
-            </div>
-        </div>
     </div>
 
     <script type="text/javascript">
@@ -102,10 +104,16 @@
                 ['Vampire', num_vampire]
             ]);
             // Set chart options
+
             options = {
-                'title': 'How many vampires in the class?',
+                'title': '',
                 'width': 400,
-                'height': 300
+                'height': 300,
+                'backgroundColor': 'transparent',
+                'legendTextStyle': {
+                    color: '#FFF'
+                },
+                'opacity': '0.7'
             };
             // Instantiate and draw our chart, passing in some options.
             chart = new google.visualization.PieChart(document.getElementById('pie_div'));
