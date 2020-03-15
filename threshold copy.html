@@ -22,46 +22,43 @@
         </div>
     </nav>
     <div class="container">
-        <form>
-            <div class="form-row">
-                <label for="first_name">First Name:</label>
-                <input type="text" class="form-control" id="first_name" placeholder="First Name">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    Is the classmate able to eat garlic?
-                    <div class="radio">
-                        <label><input type="radio" name="garlic" id="garlic_yes" value="Yes" >Yes</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="garlic" id="garlic_no" value="No" checked>No</label>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    Have you seen the classmate's shadow?
-                    <div class="radio">
-                        <label><input type="radio" name="shadow" id="shadow_yes" value="Yes">Yes</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="shadow" id="shadow_no" value="No" checked>No</label>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    Is the skin color of the classmate pale?
-                    <div class="radio">
-                        <label><input type="radio" name="skin" id="pale_yes" value="Yes">Yes</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="skin" id="pale_no" value="No" checked>No</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <button class="btn btn-primary" onclick="add_row()">Add Data</button>
-                <button class="btn btn-primary" onclick="delete_row()">Delete Last Row</button>
-            </div>
+        <div col-md-12>
+            <label for="first_name">First Name:</label>
+            <input type="text" class="form-control" id="first_name" placeholder="First Name">
+        </div>
 
-        </form>
+        <div class="col-md-4">
+            Is the classmate able to eat garlic?
+            <div class="radio">
+                <label><input type="radio" name="garlic" id="garlic_yes" value="Yes" >Yes</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="garlic" id="garlic_no" value="No" checked>No</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            Have you seen the classmate's shadow?
+            <div class="radio">
+                <label><input type="radio" name="shadow" id="shadow_yes" value="Yes">Yes</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="shadow" id="shadow_no" value="No" checked>No</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            Is the skin color of the classmate pale?
+            <div class="radio">
+                <label><input type="radio" name="complexion" id="pale_yes" value="Yes">Yes</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="complexion" id="pale_no" value="No" checked>No</label>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <button class="btn btn-primary" onclick="add_row()">Add Data</button>
+            <button class="btn btn-primary" onclick="delete_row()">Delete Last Row</button>
+        </div>
 
         <!-- create a table using data from example 24 -->
         <div class="col-md-6">
@@ -108,15 +105,16 @@
                 </tbody>
             </table>
         </div>
-        <!-- generate a pie chart based on the threshold value entered by the user-->
         <div class="col-md-6">
-
+            <!-- generate a pie chart based on the threshold value entered by the user-->
+            <div id="pie_div"></div>
+            <button class="btn btn-primary" onclick="refresh()">Refresh</button>
         </div>
     </div>
     <script type="text/javascript">
         var table = document.getElementById('threshold_table');
         var row_count = table.rows.length;
-        //console.log(row_count);
+
         //add user input to the last row of the current table
         function add_row() {
             var row = table.insertRow(row_count);
@@ -143,6 +141,74 @@
             } else {
                 cell4.innerHTML = 'No';
             }
+
+        }
+        // get values from table as key value pairs
+        //https://stackoverflow.com/questions/2968253/get-values-from-table-as-key-value-pairs-with-jquery
+        var student_data = $('#threshold_table tbody').children().map(function() {
+            var children = $(this).children();
+
+            return {
+                'name': children.eq(0).text(),
+                'shadow': children.eq(1).text(),
+                'garlic': children.eq(2).text(),
+                'complextion': children.eq(3).text()
+            };
+        }).get();
+
+        // Load the visualization API and the corechart package
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        // set a callback to run when visulization api is running
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            classmate_data_processing(data);
+
+            var options = {
+                'title': 'How many vampires in the class?',
+                'width': 400,
+                'height': 300
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('pie_div'));
+            chart.draw(data, options);
+        }
+
+        // model of MVC
+        function classmate_data_processing(result_data) {
+            var num_human = 0;
+            var num_vampire = 0;
+            for (i = 0; i < student_data.length; i++) {
+                if ((student_data[i]['shadow'] == 'No' && student_data[i]['garlic'] == 'No') ||
+                    (student_data[i]['complexion'] == 'Yes' && student_data[i]['shadow'] == 'No')) {
+                    num_vampire++;
+                } else {
+                    num_human++;
+                }
+            }
+
+            // create the data table
+            result_data.addColumn('string', 'Element');
+            result_data.addColumn('number', 'Count');
+            result_data.addRows([
+                ['Human', num_human],
+                ['Vampire', num_vampire]
+            ]);
+        }
+        console.log(row_count);
+
+
+        function delete_row() {
+            var row_count = table.rows.length;
+            table.deleteRow(row_count - 1);
+        }
+
+        // refresh the pie chart after adding user input data
+        function refresh() {
+
         }
     </script>
 </body>
