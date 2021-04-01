@@ -47,7 +47,9 @@ body {
     background-size: cover;
 }
 
-.container {
+#main-content,
+#random,
+#form1 {
   height: 100vh;
   margin-top: 0;
 }
