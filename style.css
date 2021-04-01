@@ -1,3 +1,4 @@
+
 /* Fonts ----------------------------------------------------------*/
 
 @font-face {
@@ -7,7 +8,10 @@
 
 
 /* HTML tags ----------------------------------------------------------*/
-
+nav {
+  margin: 0;
+  padding: .5rem;
+}
 ul {
     list-style-type: none;
     margin: 0;
@@ -43,6 +47,11 @@ body {
     background-size: cover;
 }
 
+.container {
+  height: 100vh;
+  margin-top: 0;
+}
+
 h1 {
     font-family: scary;
     color: white;
@@ -73,7 +82,7 @@ button {
     text-align: center;
     color: white;
     opacity: 0.7;
-    margin-top: 20px;
+    margin: 1rem 1rem 1rem;
 }
 
 button:hover {
@@ -96,18 +105,8 @@ button:hover {
 
 
 /* Home Page ----------------------------------------------------------*/
-
-#form1 {
-    color: white;
-    font-family: scary;
-    text-align: left;
-    margin-left: 30px;
-    opacity: 0.8;
-}
-
-label {
-    color: white;
-    font-family: scary;
+hr {
+  padding-bottom: 2rem;
 }
 
 select {
@@ -139,13 +138,34 @@ select {
     margin-top: 10px;
 }
 
-#threshold_table {
-    font-size: 12px;
-}
-
-#random_table {
+table {
     color: white;
     opacity: 0.8;
     font-family: scary;
-    font-size: 12px;
+    font-size: 1.2rem;
+}
+
+/* Threshold Page ----------------------------------------------------------*/
+#form1 {
+    color: white;
+    font-family: scary;
+    text-align: left;
+    margin-left: 30px;
+    opacity: 0.8;
+}
+
+label {
+    color: white;
+    font-family: scary;
+}
+
+#questions {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  padding-bottom: 3rem;
+}
+
+#threshold {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }

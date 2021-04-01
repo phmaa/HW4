@@ -18,11 +18,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="index.html">Home</a></li>
                 <li class="active"><a href="random.html">Random Guess</a></li>
-                <li><a href="threshold.html">Threshold Value</a></li>
+                <li><a href="threshold.html">Threshold Value</a>
+                <li><a href="https://phmaa.github.io/my-app/#programming">Portfolio</a></li></li>
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container" id="random">
         <h2 style="text-align: center;">Show the vampire!</h1>
             <hr>
             <div class="row">
@@ -129,12 +130,12 @@
 
         //random guess model
         function vampire_rand() {
-            // change status to vampire, if human > 2 
+            // change status to vampire, if human > 2
             var status_num = getRandomInt(1, 5);
             // create student id string based on randomly generated int
             var status_id = 'status_' + status_num.toString();
             document.getElementById(status_id).innerHTML = "Vampire";
-            //check status and count the number of remaining human  
+            //check status and count the number of remaining human
             var count = 0;
             for (i = 1; i <= 5; i++) {
                 if (document.getElementById('random_table').rows[i].cells[1].innerHTML == 'Human') {

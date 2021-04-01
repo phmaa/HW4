@@ -19,6 +19,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="random.html">Random Guess</a></li>
                 <li class="active"><a href="threshold.html">Threshold Value</a></li>
+                <li><a href="https://phmaa.github.io/my-app/#programming">Portfolio</a></li>
             </ul>
         </div>
     </nav>
@@ -28,95 +29,102 @@
             <input type="text" class="form-control" id="first_name" placeholder="First Name" required>
         </div>
         <hr>
-        <div class="col-md-4">
-            <p>Eat garlic?</p><br>
-            <div class="radio">
-                <label><input type="radio" name="garlic" id="garlic_yes" value="Yes" >Yes</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="garlic" id="garlic_no" value="No" checked>No</label>
-            </div>
+        <div id="questions">
+          <div>
+              <p>Eat garlic?</p><br>
+              <div class="radio">
+                  <label><input type="radio" name="garlic" id="garlic_yes" value="Yes" >Yes</label>
+              </div>
+              <div class="radio">
+                  <label><input type="radio" name="garlic" id="garlic_no" value="No" checked>No</label>
+              </div>
+          </div>
+
+          <div>
+              <p>Shadow?</p><br>
+              <div class="radio">
+                  <label><input type="radio" name="shadow" id="shadow_yes" value="Yes">Yes</label>
+              </div>
+              <div class="radio">
+                  <label><input type="radio" name="shadow" id="shadow_no" value="No" checked>No</label>
+              </div>
+          </div>
+
+          <div>
+              <p>Pale skin?</p><br>
+              <div class="radio">
+                  <label><input type="radio" name="complexion" id="pale_yes" value="Yes">Yes</label>
+              </div>
+              <div class="radio">
+                  <label><input type="radio" name="complexion" id="pale_no" value="No" checked>No</label>
+              </div>
+          </div>
         </div>
 
-        <div class="col-md-4">
-            <p>Shadow?</p><br>
-            <div class="radio">
-                <label><input type="radio" name="shadow" id="shadow_yes" value="Yes">Yes</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="shadow" id="shadow_no" value="No" checked>No</label>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <p>Pale skin?</p><br>
-            <div class="radio">
-                <label><input type="radio" name="complexion" id="pale_yes" value="Yes">Yes</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="complexion" id="pale_no" value="No" checked>No</label>
-            </div>
-        </div>
 
         <div class="col-md-12">
             <button class="btn btn-primary" onclick="update_chart()">Update Chart</button>
             <button class="btn btn-primary" onclick="delete_row()">Delete Row</button>
         </div>
         <div class="col-me-12">&nbsp;</div>
-        <!-- create a table using data from example 24 -->
-        <div class="col-md-6">
-            <table class="table" id="threshold_table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Garlic</th>
-                        <th>Shadow</th>
-                        <th>Pale skin</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>Yes</td>
-                        <td>Vampire</td>
-                    </tr>
-                    <tr>
-                        <td>Lee</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                        <td>Yes</td>
-                        <td>Human</td>
-                    </tr>
-                    <tr>
-                        <td>Emma</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                        <td>Yes</td>
-                        <td>Human</td>
-                    </tr>
-                    <tr>
-                        <td>Ava</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                        <td>Human</td>
-                    </tr>
-                    <tr>
-                        <td>Alex</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>Vampire</td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- create a table using static data -->
+        <div id="threshold">
+          <div>
+              <table class="table" id="threshold_table">
+                  <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>Garlic</th>
+                          <th>Shadow</th>
+                          <th>Pale skin</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>John</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>Yes</td>
+                          <td>Vampire</td>
+                      </tr>
+                      <tr>
+                          <td>Lee</td>
+                          <td>Yes</td>
+                          <td>No</td>
+                          <td>Yes</td>
+                          <td>Human</td>
+                      </tr>
+                      <tr>
+                          <td>Emma</td>
+                          <td>Yes</td>
+                          <td>No</td>
+                          <td>Yes</td>
+                          <td>Human</td>
+                      </tr>
+                      <tr>
+                          <td>Ava</td>
+                          <td>Yes</td>
+                          <td>Yes</td>
+                          <td>No</td>
+                          <td>Human</td>
+                      </tr>
+                      <tr>
+                          <td>Alex</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>Vampire</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div>
+              <!-- generate a pie chart based on the threshold value entered by the user-->
+              <div id="pie_div"></div>
+          </div>
         </div>
-        <div class="col-md-6">
-            <!-- generate a pie chart based on the threshold value entered by the user-->
-            <div id="pie_div"></div>
-        </div>
+
     </div>
     <script type="text/javascript">
         var table = document.getElementById('threshold_table');
